@@ -36,6 +36,37 @@ public class BinarySearchTree {
         return root;
     }
     
+    public boolean find(int value){
+        return findRecursive(root, value);
+    }
+    
+    private boolean findRecursive(Node root, int value){
+        if (root == null) {
+           return false; 
+        }
+        if (value == root.getKey()) {
+            return true;
+        }
+        return value < root.getKey() 
+                ? findRecursive(root.getLeft(), value) 
+                : findRecursive(root.getRight(), value);
+    }
+    
+    private Node deleteRecursive(Node current, int value){
+        if (current == null) {
+            return null;
+        }
+        if (value == current.getKey()) {
+            //empty for code to delete
+        }
+        if (value < current.getKey()) {
+            current = deleteRecursive(current.getLeft(), value);
+            return current;
+        }
+        current = deleteRecursive(current.getRight(), value);
+        return current;
+    }
+    
     public void inOrder(){
         inOrderRec(root);
     }
@@ -47,5 +78,7 @@ public class BinarySearchTree {
             inOrderRec(root.right);
         }
     }
+    
+    
     
 }
