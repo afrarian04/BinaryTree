@@ -6,6 +6,7 @@
 package binarysearchtree;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -19,12 +20,17 @@ public class BinarySearchTreeMain {
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
 
-        Random rnd = new Random();
-
-        for (int i = 0; i < 10; i++) {
-            tree.insert(rnd.nextInt(100));
-        }
-
+        tree.insert(50); 
+        tree.insert(30); 
+        tree.insert(20); 
+        tree.insert(40); 
+        tree.insert(70); 
+        tree.insert(60); 
+        tree.insert(80); 
+        
+        tree.inOrder();
+        
+        tree.delete(70);
         tree.inOrder();
     }
 
