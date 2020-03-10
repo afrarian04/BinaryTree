@@ -30,7 +30,9 @@ public class BinarySearchTreeMain {
         
         tree.inOrder();
         
-        tree.delete(70);
+        System.out.println("");
+        System.out.println("Delete 70");
+        tree.deleteImproved(70);
         tree.inOrder();
     }
 

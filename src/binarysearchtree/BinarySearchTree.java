@@ -71,12 +71,12 @@ public class BinarySearchTree {
                 return current.getLeft();
             }
             current.setKey(minValue(current.getRight()));
-            
+
             current.setRight(deleteRecursive(current.getRight(), current.getKey()));
         }
         return current;
     }
-    
+
     public void deleteImproved(int key) {
         deleteRecursiveImproved(root, key);
     }
@@ -92,17 +92,30 @@ public class BinarySearchTree {
             current.setRight(deleteRecursive(current.getRight(), value));
             return current;
         }
-        
         if (current.getLeft() == null) {
             Node temp = current.getRight();
-            //not finished yet
+            return temp;
+        } else if (current.getRight() == null) {
+            Node temp = current.getLeft();
+            return temp;
+        } else {
+            Node succParent = current.getRight();
+            Node succ = current.getRight();
+            while (succ.getLeft() != null) {
+                succParent = succ;
+                succ = succ.getLeft();
+            }
+
+            succParent.setLeft(succ.getRight());
+            current.setKey(succ.getKey());
+            return current;
         }
-        return current;
+
     }
-    
-    private int minValue(Node root){
+
+    private int minValue(Node root) {
         int minV = root.getKey();
-        while (root.getLeft() != null) {            
+        while (root.getLeft() != null) {
             minV = root.getLeft().getKey();
             root = root.getLeft();
         }
@@ -115,9 +128,9 @@ public class BinarySearchTree {
 
     public void inOrderRec(Node root) {
         if (root != null) {
-            inOrderRec(root.left);
-            System.out.println(root.key);
-            inOrderRec(root.right);
+            inOrderRec(root.getLeft());
+            System.out.print(root.getKey() + "\t");
+            inOrderRec(root.getRight());
         }
     }
 
